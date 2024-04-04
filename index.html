@@ -10,6 +10,27 @@
 </head>
 <body>
     <h1>Hello this is a Weather App!</h1>
-    <p>Weather these days has become unpredictable due to global warming. We have integrated a weather API for you.`</p>
+    <p>Weather these days has become unpredictable due to global warming. We have integrated a weather API for you.</p>
+    <div id="weather-data">
+      <!-- Weather data will be displayed here -->
+    </div>
+    <script>
+      const options = {
+        method: "GET",
+        headers: { accept: "application/json" },
+      };
+
+      fetch(
+        "https://api.tomorrow.io/v4/weather/realtime?location=toronto&apikey=zhhWeWUkULXi2C0Z8qPjNd2y134Auk00",
+        options
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          // Handle the response data and display it
+          const weatherData = JSON.stringify(response, null, 2);
+          document.getElementById("weather-data").textContent = weatherData;
+        })
+        .catch((err) => console.error(err));
+     </script>
 </body>
 </html>
